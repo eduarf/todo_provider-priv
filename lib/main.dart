@@ -3,7 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:todo_provider/pages/home_page.dart';
 import 'package:todo_provider/providers/task_prodiver.dart';
 
-void main() {
+
+
+
+void main() async{
   runApp(const MyApp());
 }
 
