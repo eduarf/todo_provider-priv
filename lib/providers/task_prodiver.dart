@@ -14,5 +14,9 @@ class TaskProvider with ChangeNotifier{
     notifyListeners();
   }
 
-  
+  void deleteTask({required Task task}){
+    _tasks.remove(task);
+    notifyListeners();
+  }
+
 }
