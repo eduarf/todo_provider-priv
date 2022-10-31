@@ -16,7 +16,7 @@ class TaskItem extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.check),
           onPressed: (){
-            task.toggleIsOkey();
+            tasks.toggleIsOkey(task: task);
           },
         ),
         title: Text(

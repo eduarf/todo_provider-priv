@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_provider/models/task_model.dart';
 import 'package:todo_provider/pages/home_page.dart';
 import 'package:todo_provider/providers/task_prodiver.dart';
 
@@ -7,6 +9,16 @@ import 'package:todo_provider/providers/task_prodiver.dart';
 
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(TaskAdapter());
+  var taskBox = await Hive.openBox<Task>('tasks');
+  taskBox.values.forEach(((element) {
+      if(element.date.day != DateTime.now().day){
+        taskBox.delete(element.id);
+      }
+  }));
   runApp(const MyApp());
 }
 

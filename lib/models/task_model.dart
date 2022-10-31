@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
+part 'task_model.g.dart';
 
+@HiveType(typeId: 1)
 class Task with ChangeNotifier{
+  @HiveField(0)
   final String id;
+  @HiveField(1)
   final String task;
+  @HiveField(2)
   final DateTime date;
+  @HiveField(3)
   bool isOkey;
 
   Task({
@@ -17,9 +24,5 @@ class Task with ChangeNotifier{
 
   factory Task.create({required String task, required DateTime date}){
     return Task(id: const Uuid().v1(), task: task, date: date);
-  }
-    void toggleIsOkey(){
-    isOkey = !isOkey;
-    notifyListeners();
   }
 }
